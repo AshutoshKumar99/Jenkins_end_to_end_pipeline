@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/AshutoshKumar99/UpdatedJenkins-Zero-To-Hero'
+        //git branch: 'main', url: 'https://github.com/AshutoshKumar99/Jenkins_end_to_end_pipeline'
       }
     }
     stage('Build and Test') {
@@ -47,13 +47,13 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "UpdatedJenkins-Zero-To-Hero"
+            GIT_REPO_NAME = "Jenkins_end_to_end_pipeline"
             GIT_USER_NAME = "AshutoshKumar99"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "ashutosh.kumar@precisely.com"
+                    git config user.email "ashutoshkumar101094@gmail.com"
                     git config user.name "Ashutosh Kumar"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
